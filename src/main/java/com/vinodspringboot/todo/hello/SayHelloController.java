@@ -9,12 +9,12 @@ public class SayHelloController {
 
     @RequestMapping("hello")
     @ResponseBody
-    public static String sayHello() {
+    public String sayHello() {
         return "Hello World!";
     }
 
     @RequestMapping("hello-jsp")
-    public static String sayHelloJsp(){
+    public String sayHelloJsp(){
         return "sayHello";
     }
 }
