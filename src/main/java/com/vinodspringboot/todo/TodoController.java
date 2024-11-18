@@ -7,6 +7,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import java.time.LocalDate;
@@ -42,12 +43,31 @@ public class TodoController {
 
     @RequestMapping(value = "add-todo", method = RequestMethod.POST)
     public String addTodo(@Valid Todo todo, BindingResult result, ModelMap model) {
-        if(result.hasErrors()){
+        if (result.hasErrors()) {
             return "addTodo";
         }
-        todoService.addTodo(todo.name, todo.description);
+        todoService.addTodo(todo);
         return "redirect:todo-list";
     }
 
+    @RequestMapping("delete-todo")
+    public String deleteTodo(@RequestParam int id, ModelMap model) {
+        todoService.deleteTodo(id);
+        return "redirect:todo-list";
+    }
 
+    @RequestMapping(value="update-todo", method = RequestMethod.GET)
+    public String showUpdateTodo(@RequestParam int id, ModelMap model) {
+        model.addAttribute("todo",todoService.findTodo(id));
+        return "addTodo";
+    }
+
+    @RequestMapping(value="update-todo", method = RequestMethod.POST)
+    public String updateTodo(@Valid Todo todo, BindingResult result, ModelMap model) {
+        if (result.hasErrors()) {
+            return "addTodo";
+        }
+        todoService.updateTodo(todo);
+        return "redirect:todo-list";
+    }
 }

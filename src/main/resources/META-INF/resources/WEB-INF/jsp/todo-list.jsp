@@ -1,18 +1,9 @@
-<%@ taglib prefix="c" uri="jakarta.tags.core" %>
-
-<html>
-<head>
-    <title> Todo-list</title>
-    <link href="webjars/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
-</head>
-<body>
-<h2> Hi ${username}, good day!!</h2>
-<hr>
+<%@ include file="common/header.jspf" %>
+<%@ include file="common/navigation.jspf" %>
 <div class="container">
     <table class="table">
         <thead>
         <tr>
-            <th>ID</th>
             <th>Name</th>
             <th>Description</th>
             <th>Target date</th>
@@ -22,19 +13,16 @@
         <tbody>
         <c:forEach items="${todos}" var="todo">
             <tr>
-                <td>${todo.id}</td>
                 <td>${todo.name}</td>
                 <td>${todo.description}</td>
                 <td>${todo.targetDate}</td>
                 <td>${todo.done}</td>
+                <td><a href="delete-todo?id=${todo.id}" class="btn btn-warning">Delete</a></td>
+                <td><a href="update-todo?id=${todo.id}" class="btn btn-success">Update</a></td>
             </tr>
         </c:forEach>
         </tbody>
     </table>
     <a class="btn btn-success" href="add-todo">Add Todo</a>
 </div>
-<script src="webjars/bootstrap/5.1.3/js/bootstrap.min.js"></script>
-<script src="webjars/jquery/3.6.0/jquery.min.js"></script>
-
-</body>
-</html>
+<%@ include file="common/footer.jspf" %>
