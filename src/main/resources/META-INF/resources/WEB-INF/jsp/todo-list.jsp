@@ -4,7 +4,7 @@
     <table class="table">
         <thead>
         <tr>
-            <th>Name</th>
+            <th>User name</th>
             <th>Description</th>
             <th>Target date</th>
             <th>Done</th>
@@ -13,7 +13,7 @@
         <tbody>
         <c:forEach items="${todos}" var="todo">
             <tr>
-                <td>${todo.name}</td>
+                <td>${todo.username}</td>
                 <td>${todo.description}</td>
                 <td>${todo.targetDate}</td>
                 <td>${todo.done}</td>

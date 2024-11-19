@@ -1,25 +1,34 @@
-package com.vinodspringboot.todo;
+package com.vinodspringboot.todo.todoapp;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
 import jakarta.validation.constraints.Size;
 
 import java.time.LocalDate;
 
+@Entity
 public class Todo {
+    @Id
+    @GeneratedValue
     public int id;
-    @Size(min = 3, message="enter at least 3 characters")
-    public String name;
+    public String username;
     @Size(min = 5,message = "Enter at least 5 characters")
     public String description;
 
     public LocalDate targetDate;
     public boolean done;
 
-    public Todo(int id, String name, String description, LocalDate targetDate, boolean done) {
+    public Todo(int id, String username, String description, LocalDate targetDate, boolean done) {
         this.id = id;
-        this.name = name;
+        this.username = username;
         this.description = description;
         this.targetDate = targetDate;
         this.done = done;
+    }
+
+    public Todo() {
+
     }
 
     public int getId() {
@@ -30,12 +39,12 @@ public class Todo {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public String getDescription() {
@@ -63,6 +72,6 @@ public class Todo {
     }
 
     public String toString() {
-        return "Todo [id=" + id + ", name=" + name + ", description=" + description + ", targetDate=" + targetDate + ", done=" + done + "]";
+        return "Todo [id=" + id + ", username=" + username + ", description=" + description + ", targetDate=" + targetDate + ", done=" + done + "]";
     }
 }
